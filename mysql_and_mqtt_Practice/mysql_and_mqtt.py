@@ -12,18 +12,22 @@ def on_message(client, userdata, msg):
     data = str(msg.payload)
     # MySQL Connection 연결
     conn = pymysql.connect(host='localhost', user='root', password='123456',
-                           db='ngn_db', charset='utf8')
+                           db='ngn_db', charset='utf8mb4')
 
     # Connection 으로부터 Cursor 생성
     curs = conn.cursor()
 
-    # SQL문 실행
-    sql = """ update lifejacket set EmergencyOn=55 where SN='sds1'""";
 
-#    sql = """update lifejacket set EmergencyOn="""+data+""" where SN='sds1'""";
+    # SQL문 실행
+    sql = "update lifejacket set EmergencyOn=55";
+
+    #sql = """update lifejacket set EmergencyOn="""+data+""" where SN='sds1'""";
     print (sql)
 
     result = curs.execute(sql)
+
+    # 이거해줘야됌
+    conn.commit()
 
     # 데이타 Fetch
     #rows = curs.fetchall()
@@ -32,8 +36,8 @@ def on_message(client, userdata, msg):
     # print(rows[1])  # 두번째 row: (2, '강수정', 2, '서울')
 
     # SQL문 실행
-    sql = "insert into  lifejacket(SN,EmergencyOn,warningOn) values ('test', 0, 1)"
-    curs.execute(sql)
+    #sql = "insert into  lifejacket(SN,EmergencyOn,warningOn) values ('test', 0, 1)"
+    #curs.execute(sql)
 
 
 
