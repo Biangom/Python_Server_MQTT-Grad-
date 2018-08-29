@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+
+#mqtt와 mysql 연동이 가능한 소스파일
+# 이 소스는 최종 소스가 아님
+
 import pymysql
 import paho.mqtt.client as mqtt
 
@@ -19,7 +23,7 @@ def on_message(client, userdata, msg):
 
 
     # SQL문 실행
-    sql = "update lifejacket set EmergencyOn=55";
+    sql = "update lifejacket set EmergencyOn=555 where SN = '12e11'";
 
     #sql = """update lifejacket set EmergencyOn="""+data+""" where SN='sds1'""";
     print (sql)
